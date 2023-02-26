@@ -17,7 +17,7 @@ enum GENDER {
 }
 
 model Registration {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
   eventName String
   teamName  String?
 
@@ -32,8 +32,8 @@ model TeamMember {
   gender    GENDER
   phoneno   String
 
-  teamId String           @db.ObjectId
-  team   Registration @relation(fields: [teamId], references: [id])
+  registrationId String       @db.ObjectId
+  registration   Registration @relation(fields: [registrationId], references: [id])
 
   // Make sure email-eventName pair is unique so that two same emails cannot register to same event.
   @@unique([eventName, email])
