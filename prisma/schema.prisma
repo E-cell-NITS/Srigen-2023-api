@@ -10,6 +10,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id  String    @id @default(auto()) @map("_id") @db.ObjectId
+enum GENDER {
+  MALE
+  FEMALE
+  OTHER
+}
+
+model Registration {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  eventName String
+  teamName  String?
+
+  TeamMembers TeamMember[]
+}
+
+model TeamMember {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  eventName String
+  email     String
+  gender    GENDER
+  phoneno   String
+
+  teamId String           @db.ObjectId
+  team   Registration @relation(fields: [teamId], references: [id])
+
+  // Make sure email-eventName pair is unique so that two same emails cannot register to same event.
+  @@unique([eventName, email])
 }
