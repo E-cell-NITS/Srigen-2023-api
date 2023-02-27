@@ -2,7 +2,7 @@ import * as Interfaces from "../../interfaces";
 import * as Utils from "../../utils";
 
 const checkMembers: Interfaces.Middlewares.Async = async (req, _res, next) => {
-  const { eventName, members } = req.body;
+  const { eventName, members, teamName } = req.body;
 
   const isteamEvent =
     Utils.Registration.eventInfo[eventName as Utils.Registration.EventId]
@@ -25,6 +25,10 @@ const checkMembers: Interfaces.Middlewares.Async = async (req, _res, next) => {
       );
     }
     return next();
+  }
+
+  if (isteamEvent && !teamName) {
+    return next(Utils.Response.error("Team Name Required", 400));
   }
 
   if (
