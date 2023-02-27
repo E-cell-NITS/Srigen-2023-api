@@ -9,6 +9,8 @@ router.post(
   "/",
   Utils.Registration.REGISTER_VALIDATORS,
   Middlewares.Validator.validate,
+  Middlewares.Registration.checkMembers,
+  Middlewares.Registration.checkIsTeamEvent,
   Controllers.Registration.create
 );
 
