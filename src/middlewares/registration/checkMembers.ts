@@ -14,8 +14,16 @@ const checkMembers: Interfaces.Middlewares.Async = async (req, _res, next) => {
     Utils.Registration.eventInfo[eventName as Utils.Registration.EventId]
       .maxTeamMembers;
 
-  /* Check Members only if its a team event. For solo events, go to next middleware*/
+  /* For solo events, set teamName to null and make check if members array length is 1 */
   if (!isteamEvent) {
+    /* If solo event, set teamName to null */
+    req.body.teamName = null;
+    /* Solo Event can have exactly 1 member */
+    if (members.length !== 1) {
+      return next(
+        Utils.Response.error("Invalid Team size for this event", 400)
+      );
+    }
     return next();
   }
 

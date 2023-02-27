@@ -22,16 +22,6 @@ const create: Interfaces.Controllers.Async = async (req, res, next) => {
     }
   }
 
-  /* If teamName is not provided(solo event), make sure member has exactly 1 entry */
-  if (!teamName && members.length > 1) {
-    return next(
-      Utils.Response.error(
-        "Cannot register more than 1 person for a solo event.",
-        400
-      )
-    );
-  }
-
   try {
     const registration = await prisma.registration.create({
       data: {
