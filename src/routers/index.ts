@@ -1,3 +1,4 @@
 import Health from "./health";
+import Registration from "./registration";
 
-export { Health };
+export { Health, Registration };
