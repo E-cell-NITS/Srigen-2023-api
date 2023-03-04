@@ -14,7 +14,7 @@ const REGISTER_VALIDATORS = [
     if (
       !Object.values<string>(Utils.Registration.EventId).includes(eventName)
     ) {
-      throw new Error(`Invalid Event Name ${eventName}`);
+      throw new Error(`${eventName} event does not exist`);
     }
   }),
   body("eventName").custom(async (eventName: Utils.Registration.EventId) => {

@@ -18,7 +18,7 @@ const create: Interfaces.Controllers.Async = async (req, res, next) => {
       },
     });
     if (entryExist) {
-      return next(Utils.Response.error("Team name taken for this event.", 400));
+      return next(Errors.Register.teamNameTaken);
     }
   }
 
@@ -41,9 +41,7 @@ const create: Interfaces.Controllers.Async = async (req, res, next) => {
       error instanceof Prisma.PrismaClientKnownRequestError &&
       error.code === "P2002"
     ) {
-      return next(
-        Utils.Response.error("Email is already registered for this event.", 400)
-      );
+      return next(Errors.Register.emailAlreadyRegistered);
     }
     return next(error);
   }
