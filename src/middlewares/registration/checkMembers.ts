@@ -1,4 +1,5 @@
 import * as Interfaces from "../../interfaces";
+import * as Errors from "../../globals/errors";
 import * as Utils from "../../utils";
 
 const checkMembers: Interfaces.Middlewares.Async = async (req, _res, next) => {
@@ -20,15 +21,13 @@ const checkMembers: Interfaces.Middlewares.Async = async (req, _res, next) => {
     req.body.teamName = null;
     /* Solo Event can have exactly 1 member */
     if (members.length !== 1) {
-      return next(
-        Utils.Response.error("Invalid Team size for this event", 400)
-      );
+      return next(Errors.Register.invalidTeamSize);
     }
     return next();
   }
 
   if (isteamEvent && !teamName) {
-    return next(Utils.Response.error("Team Name Required", 400));
+    return next(Errors.Register.teamNameRequired);
   }
 
   if (
@@ -39,7 +38,7 @@ const checkMembers: Interfaces.Middlewares.Async = async (req, _res, next) => {
   ) {
     return next();
   }
-  return next(Utils.Response.error("Invalid Team size for this event", 400));
+  return next(Errors.Register.invalidTeamSize);
 };
 
 export default checkMembers;
