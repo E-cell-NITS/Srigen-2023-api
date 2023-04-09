@@ -20,6 +20,7 @@ app
 // Routers
 app.use(`${Constants.System.ROOT}/`, Routers.Health);
 app.use(`${Constants.System.ROOT}/register`, Routers.Registration);
+app.use(`${Constants.System.ROOT}/get`, Routers.Get);
 
 // Error Handlers
 app.use(Middlewares.Error.errorHandler);

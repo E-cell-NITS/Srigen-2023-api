@@ -23,7 +23,7 @@ const eventInfo: eventInfo = {
     eventType: "competition",
     posterImage: "pic.png",
     /* 11PM 31 March 2023 */
-    endRegistration: new Date(2023, 31, 2, 22),
+    endRegistration: new Date(2023, 3, 31, 22),
   },
   [EventId.SELLIT]: {
     isTeamEvent: true,
@@ -32,14 +32,14 @@ const eventInfo: eventInfo = {
     eventType: "competition",
     posterImage: "pic.png",
     /* 11PM 31 March 2023 */
-    endRegistration: new Date(2023, 2, 31, 22),
+    endRegistration: new Date(2023, 3, 31, 22),
   },
   [EventId.SPEAKERSESSION]: {
     isTeamEvent: false,
     eventType: "speaker",
     posterImage: "pic.png",
     /* 11PM 31 March 2023 */
-    endRegistration: new Date(2023, 2, 31, 22),
+    endRegistration: new Date(2023, 3, 31, 22),
   },
 };
 
