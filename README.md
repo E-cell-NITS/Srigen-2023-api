@@ -1,2 +1,1 @@
-# MENPAL-T
-MongoDB + Express + Node + Prisma + AWS Lambda + TypeScript API Template
+# SriGen 2023 API
